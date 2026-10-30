@@ -109,7 +109,7 @@ build/           icon.ico, installer.nsh, drive-credentials.bin (generated, not 
 
 ## Download
 
-The latest installer is here: **[Pharmacy POS release zip](RELEASE_ZIP_URL)**
+The latest installer is here: **[Pharmacy POS release zip](https://github.com/TalhaRehman-KHT/pharmacy-pos/releases/latest)**
 
 The zip is password protected. Ask the author for the password.
 
@@ -173,13 +173,13 @@ ELECTRON_RUN_AS_NODE=1 ./node_modules/.bin/electron scripts/db-check.js
 4. Build from a clean state:
 
 ```sh
-rm -rf dist release
+rm -rf dist release2
 npx electron-builder install-app-deps
 npm run lint
 npm run dist
 ```
 
-The installer is written to `release/Pharmacy POS Setup <version>.exe`. `npm run dist` builds the
+The installer is written to `release2/Pharmacy POS Setup <version>.exe`. `npm run dist` builds the
 renderer, writes the Drive credentials file, then runs electron-builder with `-c.npmRebuild=false`, so
 it packs the native modules exactly as `install-app-deps` built them.
 
