@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'" />
+    <title>Invoice</title>
+    <style>
+      /* 80 mm roll, 72 mm printable. Black on white only: thermal heads print no grey. */
+      @page {
+        margin: 0;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        color: #000;
+      }
+      body {
+        width: 72mm;
+        margin: 0 auto;
+        padding: 3mm 0 6mm;
+        font-family: 'Consolas', 'Courier New', monospace;
+        font-size: 11px;
+        line-height: 1.35;
+      }
+      .center {
+        text-align: center;
+      }
+      .shop-name {
+        font-size: 15px;
+        font-weight: bold;
+      }
+      .copy {
+        font-weight: bold;
+        margin-top: 1.5mm;
+      }
+      .block {
+        margin-top: 3mm;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 2mm;
+      }
+      .row > :last-child {
+        text-align: right;
+        white-space: nowrap;
+      }
+      .item {
+        margin-top: 1.5mm;
+      }
+      .item-name {
+        font-weight: bold;
+        word-break: break-word;
+      }
+      .item-detail {
+        padding-left: 2mm;
+      }
+      .total {
+        font-size: 14px;
+        font-weight: bold;
+        margin-top: 1mm;
+      }
+      .footer {
+        margin-top: 4mm;
+        text-align: center;
+        white-space: pre-line;
+      }
+      .error {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="invoice"></main>
+    <script>
+      const params = new URLSearchParams(location.search)
+
+      function el(tag, className, text) {
+        const node = document.createElement(tag)
+        if (className) node.className = className
+        if (text != null) node.textContent = text
+        return node
+      }
+
+      function row(left, right, className) {
+        const r = el('div', className ? `row ${className}` : 'row')
+        r.append(el('span', null, left), el('span', null, right))
+        return r
+      }
+
+      function money(n) {
+        return (Number(n) || 0).toLocaleString('en-PK', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+      }
+
+      function timestamp(iso) {
+        return new Date(iso).toLocaleString('en-PK', {
+          day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit',
+        })
+      }
+
+      function settlementLabel(payments) {
+        const methods = new Set(payments.map((p) => p.method))
+        if (methods.size > 1) return 'Split (cash + card)'
+        if (methods.has('card')) return 'Card'
+        if (methods.has('cash')) return 'Cash'
+        return '-'
+      }
+
+      function render({ sale, items, payments, shop }) {
+        const root = document.getElementById('invoice')
+
+        const head = el('div', 'center')
+        head.append(el('div', 'shop-name', shop.name))
+        if (shop.address) head.append(el('div', null, shop.address))
+        if (shop.phone) head.append(el('div', null, `Ph: ${shop.phone}`))
+        if (shop.licence_no) head.append(el('div', null, `Licence: ${shop.licence_no}`))
+        if (params.get('copy') === 'duplicate') head.append(el('div', 'copy', 'DUPLICATE COPY'))
+        root.append(head)
+
+        const meta = el('div', 'block')
+        meta.append(row('Invoice', sale.invoice_no))
+        meta.append(row('Date', timestamp(sale.created_at)))
+        meta.append(row('Operator', sale.operator_name || '-'))
+        if (sale.customer_name) meta.append(row('Customer', sale.customer_name))
+        if (sale.doctor_name) meta.append(row('Doctor', sale.doctor_name))
+        root.append(meta)
+
+        const lines = el('div', 'block')
+        lines.append(row('Item', 'Amount'))
+        for (const item of items) {
+          const line = el('div', 'item')
+          line.append(el('div', 'item-name', item.medicine_name))
+          line.append(el('div', 'item-detail', `Batch ${item.batch_no || '-'}`))
+          line.append(row(`${item.qty} x ${money(item.unit_price)}`, money(item.line_total), 'item-detail'))
+          lines.append(line)
+        }
+        root.append(lines)
+
+        const totals = el('div', 'block')
+        totals.append(row('Subtotal', money(sale.subtotal)))
+        totals.append(row('Discount', `-${money(sale.discount)}`))
+        totals.append(row('Tax', money(sale.tax)))
+        totals.append(row('TOTAL PKR', money(sale.total), 'total'))
+        root.append(totals)
+
+        const pay = el('div', 'block')
+        pay.append(row('Paid by', settlementLabel(payments)))
+        for (const p of payments) {
+          if (p.method === 'cash') {
+            pay.append(row('Cash', money(p.amount)))
+            if (p.tendered != null) {
+              pay.append(row('Tendered', money(p.tendered)))
+              pay.append(row('Change', money(p.change)))
+            }
+          } else {
+            pay.append(row(p.reference ? `Card (${p.reference})` : 'Card', money(p.amount)))
+          }
+        }
+        root.append(pay)
+
+        if (shop.footer) root.append(el('div', 'footer', shop.footer))
+      }
+
+      async function main() {
+        try {
+          const res = await window.invoice.getSale(params.get('id'))
+          if (!res?.ok) throw new Error(res?.error || 'Could not load the sale.')
+          render(res.data)
+          window.invoice.rendered({
+            invoiceNo: res.data.sale.invoice_no,
+            heightPx: Math.ceil(document.documentElement.scrollHeight),
+          })
+        } catch (err) {
+          document.getElementById('invoice').replaceChildren(el('div', 'error', err.message))
+          window.invoice.rendered({ error: err.message })
+        }
+      }
+
+      main()
+    </script>
+  </body>
+</html>

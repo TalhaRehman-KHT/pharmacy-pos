@@ -1,0 +1,87 @@
+.app {
+  min-height: 100vh;
+}
+
+.app-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0 var(--space-6);
+  height: 52px;
+  border-bottom: var(--border-width) solid var(--border);
+  background: var(--surface);
+}
+
+.app-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-right: var(--space-5);
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.app-brand svg {
+  color: var(--accent);
+}
+
+.nav-link {
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  padding: var(--space-2) var(--space-3);
+  border: none;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    background-color var(--duration) var(--ease),
+    color var(--duration) var(--ease);
+}
+
+.nav-link:hover {
+  background: var(--surface-2);
+  color: var(--text-h);
+}
+
+/* The current page: a soft tint and an accent underline, not a solid block of colour */
+.nav-link.active {
+  background: var(--accent-soft);
+  color: var(--text-h);
+  box-shadow: inset 0 calc(-1 * var(--indicator-width)) 0 var(--accent);
+}
+
+.app-user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-left: auto;
+  font-size: var(--text-sm);
+}
+
+.app-user-name {
+  color: var(--text-h);
+  font-weight: 500;
+}
+
+.app-user .btn {
+  margin-left: var(--space-3);
+}
+
+.app-startup-error {
+  margin: var(--space-6);
+}
+
+/* The page message strip: stays in view at the top while a long page (Settings) is scrolled */
+.app-messages {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  padding: var(--space-3) var(--space-8) var(--space-1);
+  background: var(--bg);
+}
+
+.app-content {
+  padding: var(--space-6) var(--space-8);
+}

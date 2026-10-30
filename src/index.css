@@ -1,0 +1,173 @@
+/* Base element styles and small page-level helpers. Colours and sizes come from tokens.css. */
+
+:root {
+  font: var(--text-base) / var(--leading) var(--sans);
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+/* Raw fields are styled here, not only in Input/Select, so PasswordInput and MedicineSearch match.
+   :where keeps these at element weight, so any class (.input-large, .password-input input) overrides them. */
+:where(input:not([type='checkbox'], [type='radio']), select, textarea) {
+  font: inherit;
+  color: var(--text-h);
+  background: var(--bg);
+  padding: var(--space-2) var(--space-3);
+  border: var(--border-width) solid var(--border-strong);
+  border-radius: var(--radius);
+  transition:
+    border-color var(--duration) var(--ease),
+    box-shadow var(--duration) var(--ease);
+}
+
+textarea {
+  resize: vertical;
+}
+
+:where(input:not([type='checkbox'], [type='radio']), select, textarea):hover:not(:disabled) {
+  border-color: var(--text-muted);
+}
+
+:where(input, select, textarea):disabled {
+  background: var(--surface);
+  color: var(--text-muted);
+}
+
+:where(input[type='checkbox']) {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+/* One focus ring everywhere: the counter is driven from the keyboard, so it must be obvious */
+:focus-visible {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Text fields show the ring on any focus, mouse included, so the cashier always sees where typing goes */
+:where(input, select, textarea):focus {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: 1px;
+}
+
+/* Shared page building blocks */
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: var(--text-2xl);
+}
+
+.header-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.section-title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-lg);
+}
+
+.section-summary {
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.muted {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.mono {
+  font-family: var(--mono);
+}
+
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.expiry-soon {
+  color: var(--warning);
+  font-weight: 600;
+}
+
+.expiry-expired {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+}
+
+.date-range {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}

@@ -1,0 +1,109 @@
+/* Shared by the signed-out screens: Login and Setup */
+
+.auth-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-4);
+  background: var(--surface);
+}
+
+.auth-card {
+  width: 400px;
+  max-width: 100%;
+  padding: var(--space-7);
+}
+
+.auth-card.wide {
+  width: 580px;
+}
+
+.auth-card h1 {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-2xl);
+}
+
+.auth-subtitle {
+  margin: 0 0 var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+/* An auth card works like a dialog: its messages sit under the subtitle */
+.auth-card > .toast {
+  margin-bottom: var(--space-4);
+}
+
+.auth-fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.auth-step {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.auth-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+}
+
+.auth-actions .btn-primary {
+  min-width: 120px;
+}
+
+/* Login: the shop name above the card and the staff-account note below it */
+.auth-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  width: 400px;
+  max-width: 100%;
+}
+
+.auth-column .auth-card {
+  width: 100%;
+}
+
+.auth-shop {
+  margin: 0;
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--text-h);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.auth-footnote {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* "Forgot password?": a button, so it is keyboard reachable, drawn as a link */
+.auth-link {
+  padding: var(--space-half) var(--space-1);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}

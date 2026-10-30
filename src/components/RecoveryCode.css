@@ -1,0 +1,92 @@
+.recovery-sheet {
+  padding: var(--space-4);
+  border: 2px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.recovery-sheet-title {
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.recovery-sheet-user {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.recovery-value {
+  margin: var(--space-3) 0;
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-h);
+  user-select: all;
+}
+
+.recovery-sheet-note {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.recovery-warning {
+  margin: var(--space-4) 0 var(--space-3);
+  font-size: var(--text-sm);
+}
+
+.recovery-buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.recovery-copy-message {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.recovery-confirm {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.recovery-done {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--space-5);
+}
+
+/* Print only the code card: everything else on the page, the buttons included, is hidden */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .recovery-sheet,
+  .recovery-sheet * {
+    visibility: visible;
+  }
+
+  .recovery-sheet {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-color: var(--print-ink);
+    color: var(--print-ink);
+  }
+
+  .recovery-sheet p {
+    color: var(--print-ink);
+  }
+}

@@ -1,0 +1,71 @@
+.medicine-search-input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-lg);
+}
+
+.medicine-search-caption {
+  margin-top: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.medicine-search-list {
+  max-height: 320px;
+  overflow: auto;
+  margin: var(--space-2) 0 0;
+  padding: var(--space-1);
+  list-style: none;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
+}
+
+.medicine-search-option {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color var(--duration) var(--ease);
+}
+
+/* The highlighted result: a tint plus a bar on the left, so it reads without relying on colour alone */
+.medicine-search-option.active {
+  background: var(--accent-soft);
+  box-shadow: inset var(--indicator-width) 0 0 var(--accent);
+}
+
+.ms-name {
+  color: var(--text-h);
+  font-size: var(--text-md);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ms-meta {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.ms-barcode {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.medicine-search-empty {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+  padding: var(--space-3);
+  border: var(--border-width) dashed var(--border);
+  border-radius: var(--radius);
+  font-size: var(--text-sm);
+}

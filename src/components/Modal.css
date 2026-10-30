@@ -1,0 +1,77 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--backdrop);
+  animation: modal-fade var(--duration) var(--ease);
+}
+
+.modal {
+  max-width: calc(100vw - var(--space-8));
+  max-height: calc(100vh - var(--space-8));
+  overflow: auto;
+  padding: var(--space-6);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg);
+  box-shadow: var(--shadow-lg);
+  animation: modal-in var(--duration) var(--ease);
+}
+
+.modal-sm {
+  width: 440px;
+}
+
+.modal-md {
+  width: 560px;
+}
+
+.modal-lg {
+  width: 700px;
+}
+
+/* Destructive confirmations: a red band across the top so they never pass for an ordinary dialog */
+.modal-danger {
+  border-top: var(--space-1) solid var(--danger);
+}
+
+.modal-danger > h2 {
+  color: var(--danger);
+}
+
+/* :where keeps these defaults weak, so a class on a heading or paragraph in a dialog overrides them */
+:where(.modal) h2 {
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-xl);
+}
+
+:where(.modal) p {
+  margin: 0 0 var(--space-3);
+}
+
+.modal-messages {
+  margin-bottom: var(--space-4);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+}
+
+@keyframes modal-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}

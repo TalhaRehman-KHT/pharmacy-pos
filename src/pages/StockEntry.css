@@ -1,0 +1,39 @@
+.stock-entry {
+  max-width: 760px;
+}
+
+.selected-medicine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.selected-medicine strong {
+  color: var(--text-h);
+}
+
+.selected-medicine .muted {
+  margin-left: var(--space-3);
+}
+
+.batch-fields {
+  margin-top: var(--space-4);
+}
+
+.warnings {
+  margin-top: var(--space-4);
+}
+
+.warnings ul {
+  margin: 0;
+  padding-left: var(--space-5);
+}
+
+.existing {
+  margin-top: var(--space-7);
+}

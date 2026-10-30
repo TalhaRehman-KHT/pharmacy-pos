@@ -1,0 +1,130 @@
+/* Design tokens: the only place colours, spacing, radii, shadows, type sizes and timings are defined.
+   Everything else reads these through var(). Tuned for a brightly lit counter: near-black text, strong
+   borders, and a muted teal for the few accent areas instead of a saturated blue. */
+
+:root {
+  /* Colour: neutrals */
+  --text: #26302c;
+  --text-h: #111916;
+  --text-muted: #56625d;
+  --bg: #ffffff;
+  --surface: #f3f5f4;
+  --surface-2: #e8ecea;
+  --border: #cfd7d3;
+  --border-strong: #9aa7a1;
+
+  /* Colour: accent (primary actions, active nav, chart bars) */
+  --accent: #17695b;
+  --accent-hover: #10564a;
+  --accent-soft: #e2f0ec;
+  --on-accent: #ffffff;
+
+  /* Colour: status */
+  --danger: #b42318;
+  --danger-hover: #93190f;
+  --danger-bg: #fdeeec;
+  --danger-border: #f1b8b1;
+  --on-danger: #ffffff;
+  --warning: #835000;
+  --warning-bg: #fff5df;
+  --warning-border: #ecc670;
+  --success: #1c6a38;
+  --success-bg: #e9f6ee;
+  --success-border: #a9d8b9;
+
+  /* Keyboard focus: drawn as an outline with a gap, so it shows on filled buttons too */
+  --focus: #c26d00;
+  --focus-width: 3px;
+  /* Bars that mark the current or selected item: nav underline, highlighted search result */
+  --indicator-width: 3px;
+
+  /* Row highlight after an add or save */
+  --flash: #fbe7a6;
+
+  --backdrop: rgb(17 25 22 / 0.5);
+  --print-ink: #000000;
+
+  /* Type */
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-base: 15px;
+  --text-md: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 28px;
+  --text-4xl: 34px;
+  --leading: 1.45;
+
+  /* Billing is read at arm's length all day */
+  --text-cart: var(--text-lg);
+  --text-total: var(--text-4xl);
+
+  /* Spacing */
+  --space-half: 2px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius: 6px;
+  --radius-lg: 10px;
+
+  /* Borders and shadows */
+  --border-width: 1px;
+  --shadow-sm: 0 1px 2px rgb(17 25 22 / 0.08);
+  --shadow-lg: 0 20px 40px rgb(17 25 22 / 0.25);
+
+  /* Motion */
+  --duration: 150ms;
+  --duration-flash: 1200ms;
+  --ease: ease-out;
+
+  /* Layers */
+  --z-sticky: 5;
+  --z-modal: 10;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #d3d9d6;
+    --text-h: #f4f7f5;
+    --text-muted: #9aa6a0;
+    --bg: #151a18;
+    --surface: #1d2321;
+    --surface-2: #262e2b;
+    --border: #36403c;
+    --border-strong: #56625d;
+
+    --accent: #3fae98;
+    --accent-hover: #5cc4ae;
+    --accent-soft: rgb(63 174 152 / 0.16);
+    --on-accent: #0c1311;
+
+    --danger: #f27c70;
+    --danger-hover: #f6a198;
+    --danger-bg: rgb(242 124 112 / 0.12);
+    --danger-border: rgb(242 124 112 / 0.45);
+    --on-danger: #1a0b09;
+    --warning: #f0be55;
+    --warning-bg: rgb(240 190 85 / 0.12);
+    --warning-border: rgb(240 190 85 / 0.45);
+    --success: #6cd193;
+    --success-bg: rgb(108 209 147 / 0.12);
+    --success-border: rgb(108 209 147 / 0.45);
+
+    --focus: #ffb547;
+    --flash: rgb(240 190 85 / 0.3);
+    --backdrop: rgb(0 0 0 / 0.6);
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 20px 40px rgb(0 0 0 / 0.5);
+  }
+}

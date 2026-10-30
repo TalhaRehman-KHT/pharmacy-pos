@@ -1,0 +1,180 @@
+/* Shared by Dashboard, Low Stock, Expiry, Sales History and Reports */
+
+.report-page {
+  max-width: 1000px;
+}
+
+.report-note {
+  margin: calc(-1 * var(--space-2)) 0 var(--space-4);
+}
+
+.report-section + .report-section {
+  margin-top: var(--space-7);
+}
+
+.table .days {
+  font-weight: 400;
+  font-size: var(--text-xs);
+}
+
+.out-of-stock {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+/* Sales history */
+
+.range-summary {
+  margin-left: auto;
+  padding-bottom: var(--space-2);
+  font-size: var(--text-md);
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.detail-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.detail-header h2 {
+  margin: 0 0 var(--space-half);
+  font-size: var(--text-xl);
+}
+
+.detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-6);
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.detail-meta .meta-row {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.detail-meta dt {
+  color: var(--text-muted);
+}
+
+.detail-totals {
+  width: 320px;
+  margin: var(--space-4) 0 0 auto;
+  font-size: var(--text-sm);
+}
+
+.detail-totals .meta-row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-half) 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.meta-row dd {
+  margin: 0;
+}
+
+.detail-totals .meta-row.strong {
+  margin: var(--space-1) 0;
+  padding: var(--space-2) 0;
+  border-top: var(--border-width) solid var(--border);
+  border-bottom: var(--border-width) solid var(--border);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.detail-totals .meta-row.muted {
+  font-size: var(--text-sm);
+}
+
+/* Dashboard and report figures */
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-4);
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.stat-card.warn {
+  border-color: var(--warning-border);
+  background: var(--warning-bg);
+}
+
+.stat-label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.stat-card.warn .stat-label {
+  color: var(--warning);
+}
+
+.stat-value {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--text-h);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-error {
+  font-size: var(--text-sm);
+  color: var(--danger);
+}
+
+/* Reports */
+
+.margin-note {
+  margin: var(--space-3) 0 0;
+}
+
+.bar-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg);
+}
+
+.chart-bar {
+  fill: var(--accent);
+  transition: fill var(--duration) var(--ease);
+}
+
+.chart-bar:hover {
+  fill: var(--accent-hover);
+}
+
+.chart-baseline {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.chart-axis {
+  fill: var(--text-muted);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.top-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-7);
+}
+
+.top-grid .report-section + .report-section {
+  margin-top: 0;
+}

@@ -1,0 +1,39 @@
+{
+  "name": "pharmacy-pos",
+  "productName": "Pharmacy POS",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Offline pharmacy store management system for Windows",
+  "author": "Talha Rehman",
+  "type": "module",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "electron:dev": "concurrently -k -n vite,electron \"vite --strictPort\" \"wait-on http://localhost:5173 && cross-env ELECTRON_DEV=true electron .\"",
+    "electron:start": "vite build && electron .",
+    "dist": "vite build && node scripts/write-drive-credentials.js && electron-builder --win --x64 -c.npmRebuild=false"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^13.0.3",
+    "googleapis": "^188.0.0",
+    "keytar": "^7.9.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "concurrently": "^10.0.6",
+    "cross-env": "^10.1.0",
+    "electron": "^45.1.0",
+    "electron-builder": "^26.18.0",
+    "oxlint": "^1.89.0",
+    "vite": "^8.3.5",
+    "wait-on": "^9.5.1"
+  }
+}

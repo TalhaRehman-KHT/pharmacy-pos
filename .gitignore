@@ -1,0 +1,108 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Build output: the installer and unpacked app are rebuilt by npm run dist, never committed
+release
+
+# Secrets. .env holds GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET.
+.env
+.env.*
+# Packed Google OAuth client, written by scripts/write-drive-credentials.js
+build/drive-credentials.bin
+# The OAuth client JSON as downloaded from Google Cloud Console
+client_secret*.json
+# Code-signing certificates
+*.pfx
+*.p12
+*.pem
+*.key
+
+# Local databases and backups made while testing
+*.db
+*.db-wal
+*.db-shm
+*.db-journal
+*.db.gz
+
+
+  # Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Build output: the installer and unpacked app are rebuilt by npm run dist, never committed
+release
+
+# Secrets. .env holds GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET.
+.env
+.env.*
+!.env.example
+# Packed Google OAuth client, written by scripts/write-drive-credentials.js
+build/drive-credentials.bin
+# The OAuth client JSON as downloaded from Google Cloud Console
+client_secret*.json
+# Code-signing certificates
+*.pfx
+*.p12
+*.pem
+*.key
+
+# Local databases and backups made while testing
+*.db
+*.db-wal
+*.db-shm
+*.db-journal
+*.db.gz
+
+# Release archives
+*.zip
+*.7z
+
+# Internal working documents — not for GitHub
+CLAUDE.md
+SPEC.md
+docs/
+*-Build-Guide*.md
+*-Specification*.md
