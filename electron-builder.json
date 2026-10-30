@@ -1,7 +1,7 @@
 {
   "appId": "com.talha.pharmacypos",
   "productName": "Pharmacy POS",
-  "directories": { "output": "release", "buildResources": "build" },
+  "directories": { "output": "release2", "buildResources": "build" },
   "files": ["dist/**/*", "electron/**/*", "invoice/**/*", "package.json"],
   "extraResources": [
     { "from": "build/drive-credentials.bin", "to": "drive-credentials.bin" }
